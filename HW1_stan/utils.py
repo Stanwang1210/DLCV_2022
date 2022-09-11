@@ -21,13 +21,14 @@ def mean_iou_score(pred, labels):
     Compute mean IoU score over 6 classes
     '''
     mean_iou = 0
+    total_iou =[]
     for i in range(6):
         tp_fp = np.sum(pred == i)
         tp_fn = np.sum(labels == i)
         tp = np.sum((pred == i) * (labels == i))
         iou = tp / (tp_fp + tp_fn - tp + 1e-6)
         mean_iou += iou / 6
-        # print('class #%d : %1.5f'%(i, iou))
+        total_iou.append(iou)
     # print('\nmean_iou: %f\n' % mean_iou)
 
-    return mean_iou
+    return mean_iou, total_iou

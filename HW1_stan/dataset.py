@@ -88,6 +88,10 @@ class P2_Dataset(Dataset):
         masks[mask == 1] = 4  # (Blue: 001) Water 
         masks[mask == 7] = 5  # (White: 111) Barren land 
         masks[mask == 0] = 6  # (Black: 000) Unknown
+        # deal with invalid masks
+        masks[masks > 6] = 0
+        masks[masks < 0] = 0
+        masks = torch.LongTensor(masks)
         return masks
     def __len__(self):
         return len(self.data)
