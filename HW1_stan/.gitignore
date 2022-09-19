@@ -1,3 +1,4 @@
 *.jpg
 hw1_data/
 *.zip
+__pycache__/
